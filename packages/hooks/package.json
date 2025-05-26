@@ -23,7 +23,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "generate": "wagmi generate"
+    "generate": "wagmi generate",
+    "generate:nebula":"npx openapi-typescript http://localhost:3000/swagger.json --output ./src/trade/nebulaApiSchema.d.ts && pnpm prettier --write ./src/trade/nebulaApiSchema.d.ts"
   },
   "sideEffects": false,
   "peerDependencies": {

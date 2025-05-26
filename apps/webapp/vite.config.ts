@@ -62,6 +62,8 @@ export default ({ mode }: { mode: modeEnum }) => {
       https://info-sky.blockanalitica.com
       https://sky-tenderly.blockanalitica.com
       https://api.cow.fi/
+      https://nebula-exchange-api-prod-cudfc6ejhfg4debe.westus2-01.azurewebsites.net/
+      http://localhost:3000/
       wss://relay.walletconnect.com
       wss://relay.walletconnect.org
       https://pulse.walletconnect.org

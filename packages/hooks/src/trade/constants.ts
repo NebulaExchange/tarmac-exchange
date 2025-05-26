@@ -1,6 +1,7 @@
 import { mainnet, sepolia } from 'wagmi/chains';
 import createClient from 'openapi-fetch';
-import { paths } from './cowApiSchema';
+import { paths as cowPaths } from './cowApiSchema';
+import { paths as nebulaPaths } from './nebulaApiSchema';
 
 export enum TradeSide {
   IN = 'IN',
@@ -12,9 +13,16 @@ const COW_API_ENDPOINT = {
   [sepolia.id]: 'https://api.cow.fi/sepolia'
 } as const;
 
+const NEBULA_API_ENDPOINT = 'http://localhost:3000/';
+
 export enum OrderQuoteSideKind {
   BUY = 'buy',
   SELL = 'sell'
+}
+
+export enum QuoteSource {
+  COWSWAP = 'cowswap',
+  NEARINTENTS = 'nearintents'
 }
 
 export enum OrderBalance {
@@ -58,6 +66,8 @@ export const gpv2VaultRelayerAddress = {
 } as const;
 
 export const cowApiClient = {
-  [mainnet.id]: createClient<paths>({ baseUrl: COW_API_ENDPOINT[mainnet.id] }),
-  [sepolia.id]: createClient<paths>({ baseUrl: COW_API_ENDPOINT[sepolia.id] })
+  [mainnet.id]: createClient<cowPaths>({ baseUrl: COW_API_ENDPOINT[mainnet.id] }),
+  [sepolia.id]: createClient<cowPaths>({ baseUrl: COW_API_ENDPOINT[sepolia.id] })
 } as const;
+
+export const nebulaApiClient = createClient<nebulaPaths>({ baseUrl: NEBULA_API_ENDPOINT });

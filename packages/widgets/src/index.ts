@@ -6,6 +6,7 @@ export { L2SavingsWidget } from './widgets/L2SavingsWidget';
 export { UpgradeWidget } from './widgets/UpgradeWidget';
 export { RewardsWidget } from './widgets/RewardsWidget';
 export { TradeWidget } from './widgets/TradeWidget';
+export { TradeWidgetNebula } from './widgets/TradeWidgetNebula';
 export { L2TradeWidget as BaseTradeWidget } from './widgets/L2TradeWidget';
 export { L2TradeWidget as ArbitrumTradeWidget } from './widgets/L2TradeWidget';
 export { L2TradeWidget } from './widgets/L2TradeWidget';

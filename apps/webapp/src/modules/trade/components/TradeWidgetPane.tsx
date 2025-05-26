@@ -1,5 +1,5 @@
 import {
-  TradeWidget,
+  TradeWidgetNebula,
   TxStatus,
   TradeAction,
   WidgetStateChangeParams,
@@ -99,7 +99,7 @@ export function TradeWidgetPane(sharedProps: SharedProps) {
     [linkedActionConfig]
   );
 
-  const Widget = isL2 ? L2TradeWidget : TradeWidget;
+  const Widget = isL2 ? L2TradeWidget : TradeWidgetNebula;
 
   return (
     <Widget

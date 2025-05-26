@@ -1,5 +1,5 @@
 import { HistoryItem } from '../shared/shared.js';
-import { OrderBalance, OrderQuoteSideKind, OrderStatus } from './constants.js';
+import { OrderBalance, OrderQuoteSideKind, OrderStatus, QuoteSource } from './constants.js';
 import { ReadHook } from '../hooks.js';
 import { ModuleEnum, TransactionTypeEnum } from '../constants.js';
 
@@ -76,6 +76,7 @@ export type OrderParameters = {
   sellTokenBalance: OrderBalance;
   buyTokenBalance: OrderBalance.ERC20 | OrderBalance.INTERNAL;
   signingScheme: 'eip712' | 'ethsign' | 'presign' | 'eip1271';
+  depositAddress?: `0x${string}`;
 };
 
 export type OrderParametersWithFees = Omit<OrderParameters, 'sellAmount' | 'buyAmount' | 'feeAmount'> & {
@@ -95,6 +96,7 @@ export type OrderParametersWithFees = Omit<OrderParameters, 'sellAmount' | 'buyA
 
 export type OrderQuoteResponse = {
   quote: OrderParametersWithFees;
+  quoteSource: QuoteSource.NEARINTENTS | QuoteSource.COWSWAP;
   from: `0x${string}`;
   expiration: string;
   id: number;
