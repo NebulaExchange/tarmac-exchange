@@ -12,6 +12,9 @@ const checkVpn = async (authUrl: string): Promise<VpnResponse> => {
     throw new Error('Missing auth URL');
   }
 
+  //TODO remove from fork
+  return { countryCode: 'GB', isRestrictedRegion: false, isConnectedToVpn: false };
+
   let isConnectedToVpn = false;
   let isRestrictedRegion = false;
   let countryCode = '';
