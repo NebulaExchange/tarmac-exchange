@@ -10,7 +10,7 @@
     }
     // ...
   },
-  "include": ["src", "middleware.ts"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "types": ["vitest/globals"]
 }
