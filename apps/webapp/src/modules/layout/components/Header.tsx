@@ -23,6 +23,10 @@ export function Header(): React.ReactElement {
             <img src={defaultConfig.logo} alt="logo" width={96} />
           </div>
         </Link>
+        {/* TODO remove from fork  */}
+        <div style={{ color: 'white' }}>
+          NOT AN OFFICIAL RELEASE. NOT AFFILIATED WITH SKY.MONEY IN ANY WAY. EXPERIMENTAL RELEASE.
+        </div>
         <div className="flex items-center gap-3">
           <ChainModal dataTestId="chain-modal-trigger-header" showLabel={!isMobile} />
           <CustomConnectButton />
