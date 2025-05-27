@@ -1,4 +1,4 @@
-export default function handler(req: any, res: any) {
+module.exports = function handler(req: any, res: any) {
   const auth = req.headers.authorization;
 
   const USER = process.env.BASIC_AUTH_USER || 'admin';
@@ -21,7 +21,6 @@ export default function handler(req: any, res: any) {
   const [user, pass] = Buffer.from(encoded, 'base64').toString().split(':');
 
   if (user === USER && pass === PASS) {
-    // Auth success — serve the Vite app by rewriting to root
     res.writeHead(302, { Location: '/' });
     res.end();
   } else {
@@ -29,4 +28,4 @@ export default function handler(req: any, res: any) {
     res.statusCode = 401;
     res.end('Access denied.');
   }
-}
+};
