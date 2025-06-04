@@ -65,17 +65,17 @@ export type OrderQuoteSide =
 export type OrderParameters = {
   sellToken: `0x${string}`;
   buyToken: `0x${string}`;
-  receiver: `0x${string}`;
+  receiver?: `0x${string}`;
   sellAmount: string;
   buyAmount: string;
-  validTo: number;
-  appData: `0x${string}`;
-  feeAmount: string;
-  kind: OrderQuoteSideKind;
-  partiallyFillable: boolean;
-  sellTokenBalance: OrderBalance;
-  buyTokenBalance: OrderBalance.ERC20 | OrderBalance.INTERNAL;
-  signingScheme: 'eip712' | 'ethsign' | 'presign' | 'eip1271';
+  validTo?: number;
+  appData?: `0x${string}`;
+  feeAmount?: string;
+  kind?: OrderQuoteSideKind;
+  partiallyFillable?: boolean;
+  sellTokenBalance?: OrderBalance;
+  buyTokenBalance?: OrderBalance.ERC20 | OrderBalance.INTERNAL;
+  signingScheme?: 'eip712' | 'ethsign' | 'presign' | 'eip1271';
   depositAddress?: `0x${string}`;
 };
 
@@ -91,7 +91,7 @@ export type OrderParametersWithFees = Omit<OrderParameters, 'sellAmount' | 'buyA
   slippageTolerance: number;
   sellAmountToSign: bigint;
   buyAmountToSign: bigint;
-  appDataHash: `0x${string}`;
+  appDataHash?: `0x${string}`;
 };
 
 export type OrderQuoteResponse = {

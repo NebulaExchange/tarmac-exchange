@@ -58,30 +58,27 @@ const getTradeQuote = async ({
   isEthFlow,
   isSmartContractWallet
 }: GetTradeQuoteParams) => {
-  // const side: OrderQuoteSide =
-  //   kind === OrderQuoteSideKind.BUY
-  //     ? { kind: OrderQuoteSideKind.BUY, buyAmountAfterFee: amount.toString() }
-  //     : { kind: OrderQuoteSideKind.SELL, sellAmountBeforeFee: amount.toString() };
-
-  const {
-    data: quoteData,
-    response,
-    error
-  } = await nebulaApiClient.POST('/quote', {
+  const { data: quoteData, error } = await nebulaApiClient.POST('/quote', {
     body: {
-      amountFrom: amount.toString(),
+      amount: amount.toString(),
       accountFrom: address,
       accountTo: address,
       chainFrom: mapChainIdToKey(chainId),
       chainTo: mapChainIdToKey(chainId),
       tokenFrom: sellToken,
-      tokenTo: buyToken
+      tokenTo: buyToken,
+      kind: kind === OrderQuoteSideKind.SELL ? 'EXACT_INPUT' : 'EXACT_OUTPUT',
+      slippage: slippage,
+      ttl: ttl,
+      appData: '{"appCode":"sky.money","metadata":{"orderClass":{"orderClass":"market"}},"version":"1.1.0"}',
+      isSmartContractWallet: isSmartContractWallet,
+      isNative: isEthFlow
     }
   });
 
-  // if (error) {
-  //   throw new Error((error as { errorType: string } | undefined)?.errorType);
-  // }
+  if (error) {
+    throw new Error('Error retrieving quote from Nebula');
+  }
 
   const quote = quoteData as QuoteResponseModel;
 
@@ -114,6 +111,7 @@ const createCowswapQuote = async (quote: CowswapQuote, slippage: number) => {
     ...quote,
     quoteSource: QuoteSource.COWSWAP,
     quote: {
+      ...quote.quote,
       sellAmount: BigInt(quote.quote.sellAmount),
       buyAmount: BigInt(quote.quote.buyAmount),
       feeAmount: BigInt(quote.quote.feeAmount),
@@ -148,9 +146,9 @@ const createNearIntentsQuote = async (quote: NearIntentsQuote, slippage: number)
 
   return {
     expiration: quote.quote.deadline,
-    from: '0x00000',
+    from: '0x0000000000000000000000000000000000000000',
     quoteSource: QuoteSource.NEARINTENTS,
-    id: 12312,
+    id: 1,
     verified: true,
     quote: {
       sellAmount: BigInt(quote.quote.amountIn),
@@ -164,17 +162,9 @@ const createNearIntentsQuote = async (quote: NearIntentsQuote, slippage: number)
       slippageTolerance: slippage,
       sellAmountToSign,
       buyAmountToSign,
-      receiver: '0xaaaa',
-      appData: '0xaaa',
-      appDataHash: '0xaaa',
-      buyTokenBalance: OrderBalance.ERC20,
-      kind: OrderQuoteSideKind.BUY,
       partiallyFillable: false,
-      sellToken: '0xxx',
-      sellTokenBalance: OrderBalance.ERC20,
-      signingScheme: 'eip712',
-      validTo: 12312312,
-      buyToken: '0xxads',
+      sellToken: quote.quoteRequest.destinationAsset,
+      buyToken: quote.quoteRequest.originAsset,
       depositAddress: quote.quote.depositAddress
     }
   } as OrderQuoteResponse;

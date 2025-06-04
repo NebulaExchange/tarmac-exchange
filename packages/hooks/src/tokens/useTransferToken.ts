@@ -5,11 +5,12 @@ import { useAccount } from 'wagmi';
 import { usdtAbi, usdtAddress, usdtSepoliaAddress } from '../generated';
 import { useWriteContractFlow } from '../shared/useWriteContractFlow';
 import { sepolia } from 'viem/chains';
+import { useNativeTransferFlow } from '../shared/useNativeTransferFlow';
 
 // Returns the tx hash
 type TransferHookParams = WriteHookParams & {
-  contractAddress?: `0x${string}`;
-  to?: `0x${string}`;
+  contractAddress?: `0x${string}` | undefined;
+  to: `0x${string}`;
   amount?: bigint;
 };
 export function useTransferToken({
@@ -31,13 +32,23 @@ export function useTransferToken({
 
   const enabled = isConnected && !!to && !!amount && paramEnabled;
 
+  if (!contractAddress)
+    return useNativeTransferFlow({
+      to,
+      value: amount!,
+      enabled,
+      chainId,
+      onSuccess,
+      onError,
+      onStart
+    });
+
   return useWriteContractFlow({
     // Token contract address
     address: contractAddress,
     // USDT's ABI slightly differs from the standard ERC20 ABI, using the ERC20 one causes the simulation to fail
     abi: isUsdt ? usdtAbi : erc20Abi,
     functionName: 'transfer',
-    // spender is the contract address of the contract that will spend the tokens
     args: [to!, amount!],
     gas,
     enabled,

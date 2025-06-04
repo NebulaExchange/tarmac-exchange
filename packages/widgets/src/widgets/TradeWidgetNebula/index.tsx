@@ -144,10 +144,10 @@ function TradeWidgetWrapped({
   const isConnectedAndEnabled = useMemo(() => isConnected && enabled, [isConnected, enabled]);
   const linguiCtx = useLingui();
 
-  const wrappedNativeTokenAddress = useMemo(
-    () => defaultConfig.tradeTokenList[chainId].find(token => token.isWrappedNative)?.address,
-    [chainId, defaultConfig.tradeTokenList]
-  );
+  // const wrappedNativeTokenAddress = useMemo(
+  //   () => defaultConfig.tradeTokenList[chainId].find(token => token.isWrappedNative)?.address,
+  //   [chainId, defaultConfig.tradeTokenList]
+  // );
 
   const tokenList = useMemo(() => {
     const configOriginList = defaultConfig.tradeTokenList[chainId];
@@ -283,7 +283,7 @@ function TradeWidgetWrapped({
     isLoading: isQuoteLoading,
     error: quoteError
   } = useQuoteTradeNebula({
-    sellToken: originToken?.isNative ? wrappedNativeTokenAddress : originTokenAddress,
+    sellToken: originTokenAddress,
     buyToken: targetTokenAddress,
     amount: lastUpdated === TradeSide.IN ? debouncedOriginAmount : debouncedTargetAmount,
     kind: lastUpdated === TradeSide.IN ? OrderQuoteSideKind.SELL : OrderQuoteSideKind.BUY,
@@ -390,7 +390,7 @@ function TradeWidgetWrapped({
     // isLoading: transferIsLoading
   } = useTransferToken({
     amount: quoteData?.quote.sellAmountToSign,
-    contractAddress: originTokenAddress,
+    contractAddress: originToken?.isNative ? undefined : originTokenAddress,
     to: quoteData?.quote.depositAddress ?? '0x',
     onStart: (hash: string) => {
       addRecentTransaction?.({
@@ -568,7 +568,7 @@ function TradeWidgetWrapped({
     isLoading: isEthTradeLoading
   } = useCreateEthTradeOrder({
     order: quoteData,
-    enabled: originToken?.isNative ? true : false,
+    enabled: originToken?.isNative && quoteData?.quoteSource === QuoteSource.COWSWAP ? true : false,
     onStart: (hash: string) => {
       addRecentTransaction?.({
         hash,

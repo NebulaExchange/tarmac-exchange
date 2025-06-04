@@ -229,16 +229,26 @@ export interface components {
        * @example COWSWAP
        * @enum {string}
        */
-      quoteSource: 'NEARINTENTS' | 'COWSWAP';
+      quoteSource: 'NEARINTENTS' | 'COWSWAP' | '1INCH';
     };
+    /** @enum {string} */
+    QuoteKind: 'EXACT_INPUT' | 'EXACT_OUTPUT';
     QuoteRequestModel: {
-      amountFrom: string;
+      amount: string;
       accountFrom: string;
       tokenFrom: string;
-      chainFrom?: string;
+      chainFrom: string;
       accountTo?: string;
       tokenTo: string;
-      chainTo?: string;
+      chainTo: string;
+      /** Format: double */
+      slippage: number;
+      kind: components['schemas']['QuoteKind'];
+      /** Format: double */
+      ttl: number;
+      appData: string;
+      isSmartContractWallet?: boolean;
+      isNative?: boolean;
     };
   };
   responses: never;
