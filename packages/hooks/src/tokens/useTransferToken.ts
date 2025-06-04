@@ -25,37 +25,36 @@ export function useTransferToken({
 }: TransferHookParams): WriteHook {
   const chainId = useChainId();
   const { isConnected } = useAccount();
+  const enabled = isConnected && !!to && !!amount && paramEnabled;
+
   const isUsdt =
     chainId === sepolia.id
       ? contractAddress === usdtSepoliaAddress[chainId as keyof typeof usdtSepoliaAddress]
       : contractAddress === usdtAddress[chainId as keyof typeof usdtAddress];
 
-  const enabled = isConnected && !!to && !!amount && paramEnabled;
+  const nativeTransfer = useNativeTransferFlow({
+    to,
+    value: amount!,
+    enabled: enabled && !contractAddress,
+    chainId,
+    onSuccess,
+    onError,
+    onStart
+  });
 
-  if (!contractAddress)
-    return useNativeTransferFlow({
-      to,
-      value: amount!,
-      enabled,
-      chainId,
-      onSuccess,
-      onError,
-      onStart
-    });
-
-  return useWriteContractFlow({
-    // Token contract address
-    address: contractAddress,
-    // USDT's ABI slightly differs from the standard ERC20 ABI, using the ERC20 one causes the simulation to fail
+  const tokenTransfer = useWriteContractFlow({
+    address: contractAddress!,
     abi: isUsdt ? usdtAbi : erc20Abi,
     functionName: 'transfer',
     args: [to!, amount!],
     gas,
-    enabled,
+    enabled: enabled && !!contractAddress,
     scopeKey: `${contractAddress}-transfer-${to}-${amount}-${chainId}`,
     chainId,
     onSuccess,
     onError,
     onStart
   });
+
+  return contractAddress ? tokenTransfer : nativeTransfer;
 }

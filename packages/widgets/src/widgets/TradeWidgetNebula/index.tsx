@@ -385,9 +385,9 @@ function TradeWidgetWrapped({
 
   const {
     execute: transferExecute,
-    prepareError: transferPrepareError
-    // prepared: transferPrepared,
-    // isLoading: transferIsLoading
+    prepareError: transferPrepareError,
+    prepared: transferPrepared,
+    isLoading: transferIsLoading
   } = useTransferToken({
     amount: quoteData?.quote.sellAmountToSign,
     contractAddress: originToken?.isNative ? undefined : originTokenAddress,
@@ -753,10 +753,14 @@ function TradeWidgetWrapped({
     !pairValid ||
     disabledDueToHighCosts ||
     (!originToken.isNative && allowance === undefined) ||
-    (originToken.isNative && !ethTradePrepared) ||
-    (originToken.isNative && isEthTradeLoading) ||
+    (originToken.isNative && !ethTradePrepared && quoteData.quoteSource === QuoteSource.COWSWAP) ||
+    (originToken.isNative && !transferPrepared && quoteData.quoteSource === QuoteSource.NEARINTENTS) ||
+    (originToken.isNative && isEthTradeLoading && quoteData.quoteSource === QuoteSource.COWSWAP) ||
+    (originToken.isNative && transferIsLoading && quoteData.quoteSource === QuoteSource.NEARINTENTS) ||
     allowanceLoading ||
     isAmountWaitingForDebounce;
+
+  console.log(transferDisabled);
 
   useEffect(() => {
     if (!originToken?.isNative && isSmartContractWallet) {
