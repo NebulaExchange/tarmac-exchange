@@ -13,7 +13,7 @@ const COW_API_ENDPOINT = {
   [sepolia.id]: 'https://api.cow.fi/sepolia'
 } as const;
 
-const NEBULA_API_ENDPOINT = 'http://localhost:3000'; //'https://nebula-exchange-api-prod-cudfc6ejhfg4debe.westus2-01.azurewebsites.net/';
+const NEBULA_API_ENDPOINT = 'https://nebula-exchange-api-prod-cudfc6ejhfg4debe.westus2-01.azurewebsites.net/';
 
 export enum OrderQuoteSideKind {
   BUY = 'buy',
