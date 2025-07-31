@@ -18,6 +18,8 @@ msgstr ""
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
@@ -106,11 +108,14 @@ msgstr ""
 
 #. placeholder {0}: targetToken.symbol
 #. placeholder {1}: originToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "1 {0} = {executionPrice} {1}"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeInputs.tsx
 msgid "A minimum 0.01 ETH is needed to cover transaction costs. Actual gas fees may be lower."
 msgstr ""
@@ -197,6 +202,7 @@ msgid "Accumulated Rewards"
 msgstr ""
 
 #. placeholder {0}: targetToken?.symbol || ''
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
 msgid "Add {0} to wallet"
@@ -212,6 +218,7 @@ msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
@@ -247,6 +254,7 @@ msgstr ""
 msgid "An error occurred when allowing this app to access the tokens in your wallet."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "An error occurred while allowing the app to access the {symbol}."
 msgstr ""
@@ -287,6 +295,8 @@ msgstr ""
 msgid "An error occurred while supplying your {symbol}."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "An error occurred while trading your tokens"
@@ -305,6 +315,7 @@ msgid "An error occurred while withdrawing your {symbol}."
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
@@ -359,6 +370,7 @@ msgid "Approve staking amount"
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
@@ -379,6 +391,7 @@ msgstr ""
 msgid "Approve supply amount"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
@@ -403,6 +416,7 @@ msgstr ""
 #. placeholder {1}: originToken?.symbol ?? ''
 #. placeholder {1}: selectedRewardContract?.supplyToken.name ?? ''
 #. placeholder {1}: originToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/RewardsWidget/index.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
@@ -457,6 +471,11 @@ msgstr ""
 msgid "Back to Seal"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
@@ -488,6 +507,8 @@ msgstr ""
 msgid "Balances displays all of your Sky-related funds. When you connect your crypto wallet to Sky.money to access the decentralised Sky Protocol, only the tokens in the wallet that are relevant to the app are listed. With all of your Sky funds visible in one place, you can better self-manage your funds. Sky.money is non-custodial and permissionless."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Be sure to check your transaction status on CoW Explorer to verify the cancellation was successful"
@@ -539,29 +560,38 @@ msgstr ""
 msgid "Borrowing"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeConfigMenu.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeConfigMenu.tsx
 msgid "By setting your slippage tolerance level, you control the degree of token price fluctuation that you will accept between the time you initiate a trade transaction and its execution on the blockchain."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Cancel error"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Cancel order"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Cancel successful"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Canceling order"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Cancelled"
 msgstr ""
@@ -575,11 +605,13 @@ msgstr ""
 msgid "Checking your position status..."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/components/L2TradeInputs.tsx
 msgid "Choose a token to receive"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/components/L2TradeInputs.tsx
 msgid "Choose a token to trade, and enter an amount"
@@ -712,6 +744,7 @@ msgstr ""
 msgid "Confirm this transaction in your wallet."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Confirm trade details"
 msgstr ""
@@ -735,6 +768,8 @@ msgstr ""
 msgid "Confirm your revert"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Confirm your trade"
@@ -776,6 +811,7 @@ msgstr ""
 #: apps/webapp/src/modules/layout/components/CustomConnectButton.tsx
 #: apps/webapp/src/modules/layout/components/CustomConnectButton.tsx
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
 #: packages/widgets/src/widgets/SealModuleWidget/index.tsx
@@ -788,6 +824,7 @@ msgid "Connect Wallet"
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
@@ -816,12 +853,14 @@ msgstr ""
 msgid "Copy transaction hash"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Creating order"
 msgstr ""
 
 #. placeholder {0}: originToken.symbol
 #. placeholder {1}: targetToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Creating order to trade {originAmount} {0} for {targetAmount} {1}"
 msgstr ""
@@ -851,6 +890,7 @@ msgstr ""
 msgid "Current SKY price"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeConfigMenu.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeConfigMenu.tsx
 msgid "Custom"
 msgstr ""
@@ -916,6 +956,7 @@ msgid "Earn with USDS"
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/components/Repay.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/components/Lock.tsx
@@ -941,6 +982,9 @@ msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
@@ -972,11 +1016,13 @@ msgstr ""
 msgid "Error claiming from the {0} rewards pool"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Error fetching quote"
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/SavingsWidget/index.tsx
 #: packages/widgets/src/widgets/SavingsWidget/index.tsx
@@ -993,6 +1039,7 @@ msgstr ""
 msgid "Error preparing transaction"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 msgid "Estimated price impact"
 msgstr ""
@@ -1020,11 +1067,15 @@ msgstr ""
 msgid "Exit Seal Engine"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Expected input"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Expected output"
@@ -1050,6 +1101,7 @@ msgstr ""
 msgid "Fetching position details"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Fetching price"
 msgstr ""
@@ -1165,6 +1217,7 @@ msgstr ""
 msgid "I have read and understand the"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeConfigMenu.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeConfigMenu.tsx
 msgid "If the actual slippage is greater than your chosen tolerance level, the transaction will fail and be reverted."
 msgstr ""
@@ -1175,6 +1228,8 @@ msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
@@ -1196,11 +1251,13 @@ msgid "In progress"
 msgstr ""
 
 #. placeholder {0}: token.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 msgid "Input is estimated. You will spend at most {slippageAdjustedQuote} {0} or the transaction will revert."
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeInputs.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/components/Lock.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/components/Free.tsx
@@ -1320,6 +1377,8 @@ msgstr ""
 msgid "Max borrowable amount"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Maximum input"
@@ -1381,6 +1440,8 @@ msgstr ""
 msgid "Min borrowable amount"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Minimum output"
@@ -1420,6 +1481,8 @@ msgstr ""
 msgid "My rewards"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Network costs (est.)"
@@ -1439,6 +1502,7 @@ msgstr ""
 msgid "Next, confirm the revert transaction."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
@@ -1505,6 +1569,7 @@ msgstr ""
 msgid "Not enough USDS in your wallet"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeConfigMenu.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeConfigMenu.tsx
 msgid "Note that reverted transactions may still incur gas fees."
 msgstr ""
@@ -1562,25 +1627,32 @@ msgstr ""
 msgid "or a contract that you own"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Order cancellation attempt failed"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Order cancelled"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Order created"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Order creation failed"
 msgstr ""
 
 #. placeholder {0}: token.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 msgid "Output is estimated. You will receive at least {slippageAdjustedQuote} {0} or the transaction will revert."
 msgstr ""
@@ -1592,6 +1664,7 @@ msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SavingsWidget/lib/constants.ts
 msgid "Please allow this app to access the {symbol} in your wallet."
@@ -1650,18 +1723,32 @@ msgstr ""
 msgid "Preparing to withdraw {amount} {symbol}"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Presign transaction error"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Price impact"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
 #: packages/widgets/src/shared/constants.ts
 msgid "Processing transaction"
+msgstr ""
+
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+msgid "Processing..."
+msgstr ""
+
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
+msgid "Quote source"
 msgstr ""
 
 #: apps/webapp/src/modules/stake/components/StakeRewardsOverview.tsx
@@ -1709,6 +1796,7 @@ msgid "Repaying USDS in the Stake Rewards module"
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
 #: packages/widgets/src/widgets/SealModuleWidget/index.tsx
@@ -1740,6 +1828,8 @@ msgstr ""
 msgid "Revert successful"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Review trade"
@@ -1886,6 +1976,7 @@ msgstr ""
 msgid "Select a delegate"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
 msgid "Select a token"
@@ -1912,15 +2003,18 @@ msgstr ""
 
 #. placeholder {0}: formatBigInt(debouncedOriginAmount, { locale, unit: originToken ? getTokenDecimals(originToken, chainId) : 18 })
 #. placeholder {1}: originToken?.symbol ?? ''
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Sending {0} {1} to the EthFlow contract"
 msgstr ""
 
 #. placeholder {0}: originToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Sending {originAmount} {0} to the contract"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Sending ETH"
 msgstr ""
@@ -1933,6 +2027,8 @@ msgstr ""
 msgid "Show SKY values"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Signing failed"
@@ -2009,11 +2105,14 @@ msgstr ""
 msgid "Sky Tokens Rewards are what you access when you supply USDS to the Sky Token Rewards module of the decentralised Sky Protocol. Sky Token Rewards are in the form of SKY governance tokens. No minimum USDS supply amount is required. With the Sky Protocol, you can access rewards without giving up control of your supplied funds."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeConfigMenu.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeConfigMenu.tsx
 msgid "Slippage"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Slippage tolerance"
 msgstr ""
@@ -2023,14 +2122,18 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Something went wrong when trying to post the order to the Order Book. Please try again."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Something went wrong when trying to send the presign transaction. Please try again."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "Something went wrong when trying to sign the message. Please try again."
@@ -2151,6 +2254,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
@@ -2331,6 +2435,7 @@ msgstr ""
 msgid "This position is not valid for migration"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeSummary.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeSummary.tsx
 msgid "This reflects your slippage tolerance."
 msgstr ""
@@ -2341,6 +2446,7 @@ msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
 #: packages/widgets/src/widgets/SealModuleWidget/lib/constants.ts
@@ -2422,6 +2528,8 @@ msgid "trade"
 msgstr ""
 
 #: apps/webapp/src/modules/balances/components/BalancesModuleShowcase.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeHeader.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeTransactionStatus.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeHeader.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
@@ -2439,20 +2547,35 @@ msgstr ""
 msgid "Trade and start saving"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Trade completed"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeDetails.tsx
 #: packages/widgets/src/widgets/TradeWidget/components/TradeDetails.tsx
 msgid "Trade details"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
 msgid "Trade failed"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
@@ -2495,6 +2618,8 @@ msgstr ""
 msgid "Trades"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Trading"
@@ -2509,6 +2634,9 @@ msgstr ""
 
 #. placeholder {0}: originToken.symbol
 #. placeholder {1}: targetToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
@@ -2530,13 +2658,31 @@ msgstr ""
 msgid "Transactions"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+msgid "Transfer failed"
+msgstr ""
+
 #: packages/widgets/src/widgets/SealModuleWidget/components/About.tsx
 msgid "Transfer the voting power of your MKR and SKY tokens to a recognized delegate"
+msgstr ""
+
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+msgid "Transferring"
+msgstr ""
+
+#. placeholder {0}: formatBigInt(debouncedOriginAmount, { locale, unit: originToken ? getTokenDecimals(originToken, chainId) : 18 })
+#. placeholder {1}: originToken?.symbol ?? ''
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+msgid "Transferring {0} {1}"
 msgstr ""
 
 #: packages/widgets/src/widgets/SavingsWidget/lib/constants.ts
 #: packages/widgets/src/widgets/RewardsWidget/lib/constants.ts
 msgid "Transferring {amount} {symbol}"
+msgstr ""
+
+#: packages/widgets/src/widgets/TradeWidgetNebula/components/TradeTransactionStatus.tsx
+msgid "Try again"
 msgstr ""
 
 #: apps/webapp/src/modules/stake/components/StakeOverview.tsx
@@ -2590,10 +2736,13 @@ msgstr ""
 msgid "Unable to load chart data, please try again later."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Unknown status"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Unknown status."
@@ -2782,6 +2931,8 @@ msgid "VPN Detected"
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/StakeModuleWidget/lib/constants.ts
@@ -2801,6 +2952,7 @@ msgstr ""
 
 #. placeholder {0}: originToken.symbol
 #. placeholder {1}: targetToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Waiting for the order to be executed by a solver to trade {originAmount} {0} for {targetAmount} {1}"
 msgstr ""
@@ -2814,6 +2966,7 @@ msgid "We could not approve the migrator contract to migrate your position."
 msgstr ""
 
 #: packages/widgets/src/widgets/UpgradeWidget/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
 #: packages/widgets/src/widgets/StakeModuleWidget/index.tsx
@@ -2839,6 +2992,10 @@ msgstr ""
 
 #: packages/widgets/src/widgets/SealModuleWidget/index.tsx
 msgid "We could not migrate your position."
+msgstr ""
+
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+msgid "We could not transfer your tokens."
 msgstr ""
 
 #: apps/webapp/src/modules/seal/components/SealRewardsOverview.tsx
@@ -2919,6 +3076,7 @@ msgid "Withdrawing {amount} {symbol}"
 msgstr ""
 
 #. placeholder {0}: originToken?.symbol ?? ''
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/L2TradeWidget/index.tsx
 msgid "You approved {0}"
@@ -2965,6 +3123,7 @@ msgstr ""
 
 #. placeholder {0}: originToken.symbol
 #. placeholder {1}: targetToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "You are now trading {originAmount} {0}. You will receive {targetAmount} {1}"
 msgstr ""
@@ -3007,6 +3166,7 @@ msgstr ""
 
 #. placeholder {0}: targetToken.symbol
 #. placeholder {1}: originToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "You received {targetAmount} {0} for {originAmount} {1}."
 msgstr ""
@@ -3028,6 +3188,8 @@ msgstr ""
 msgid "You staked"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 msgid "You successfully cancelled the order"
@@ -3039,6 +3201,7 @@ msgstr ""
 
 #. placeholder {0}: originToken.symbol
 #. placeholder {1}: targetToken.symbol
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "You successfully traded {originAmount} {0} for {targetAmount} {1}"
 msgstr ""
@@ -3067,6 +3230,9 @@ msgstr ""
 #. placeholder {2}: formatBigInt(executedBuyAmount, { locale, unit: targetToken ? getTokenDecimals(targetToken, chainId) : 18 })
 #. placeholder {2}: formatBigInt(debouncedTargetAmount, { locale, unit: targetToken && getTokenDecimals(targetToken, chainId) })
 #. placeholder {3}: targetToken?.symbol ?? ''
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
+#: packages/widgets/src/widgets/TradeWidgetNebula/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
 #: packages/widgets/src/widgets/TradeWidget/index.tsx
@@ -3220,6 +3386,8 @@ msgstr ""
 msgid "Your balances"
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Your cancellation request has been placed"
@@ -3310,6 +3478,7 @@ msgstr ""
 msgid "Your supply is being processed on the blockchain. Please wait."
 msgstr ""
 
+#: packages/widgets/src/widgets/TradeWidgetNebula/lib/constants.ts
 #: packages/widgets/src/widgets/TradeWidget/lib/constants.ts
 msgid "Your trade is being processed on the blockchain. Please wait."
 msgstr ""
