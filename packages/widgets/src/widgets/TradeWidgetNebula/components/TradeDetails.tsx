@@ -4,6 +4,7 @@ import { TransactionOverview } from '@widgets/shared/components/ui/transaction/T
 import { formatNumber } from '@jetstreamgg/utils';
 import { formatUnits } from 'viem';
 import { useChainId } from 'wagmi';
+import { QuoteSource } from '../../../../../hooks/src/trade/constants';
 
 type TradeDetailsProps = {
   quoteData: OrderQuoteResponse | null | undefined;
@@ -35,6 +36,10 @@ export function TradeDetails({
           {
             label: t`Slippage tolerance`,
             value: `${quoteData.quote.slippageTolerance}%`
+          },
+          {
+            label: t`Quote source`,
+            value: quoteData.quoteSource === QuoteSource.COWSWAP ? 'CoW Protocol' : 'NEAR Intents'
           },
           {
             label: t`Network costs (est.)`,

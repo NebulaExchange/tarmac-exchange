@@ -2,7 +2,6 @@ import { Trans } from '@lingui/react/macro';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { TradeConfigMenu } from './TradeConfigMenu';
 import { Heading, Text } from '@widgets/shared/components/ui/Typography';
-import { ExternalLink } from '@widgets/shared/components/ExternalLink';
 import { useAccount } from 'wagmi';
 import { TokenForChain } from '@jetstreamgg/hooks';
 import { sepolia } from 'viem/chains';
@@ -23,8 +22,7 @@ export const TradeHeader = ({
   isEthFlow = false,
   ttl,
   setTtl,
-  originToken,
-  onExternalLinkClicked
+  originToken
 }: PropTypes): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
   const collisionBoundary = ref.current?.parentElement?.parentElement || null;
@@ -46,17 +44,7 @@ export const TradeHeader = ({
           setTtl={setTtl}
         />
       </div>
-      <Text className="text-text mt-6 text-sm font-normal leading-none">
-        Powered by{' '}
-        <ExternalLink
-          href="https://cow.fi/"
-          showIcon={false}
-          className="underline"
-          onExternalLinkClicked={onExternalLinkClicked}
-        >
-          CoW Protocol
-        </ExternalLink>
-      </Text>
+
       {shouldShowUSDTWarning && (
         <Text className="mt-1 text-[11px] font-normal leading-none text-orange-400">
           Need to reset the allowance to 0 before approving a new amount

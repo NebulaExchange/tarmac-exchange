@@ -4,6 +4,38 @@
  */
 
 export interface paths {
+  '/tokens': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['GetTokens'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/swap/status/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['GetSwapStatus'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/quote': {
     parameters: {
       query?: never;
@@ -20,10 +52,43 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/health': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['CheckHealth'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    TokenModel: {
+      address: string;
+      symbol: string;
+      name: string;
+      /** Format: double */
+      decimals: number;
+      chain: string;
+      logoURI: string | null;
+    };
+    SwapStatusModel: {
+      status: string;
+      sourceChainHashes?: string[];
+      sourceChainTxUrls?: string[];
+      processorHashes?: string[];
+      targetChainHashes?: string[];
+      targetChainTxUrls?: string[];
+    };
     /** @description 20 byte Ethereum address encoded as a hex with `0x` prefix. */
     Address: string;
     /** @description Amount of a token. `uint256` encoded in decimal. */
@@ -96,58 +161,63 @@ export interface components {
       quote: components['schemas']['OrderParameters'];
     };
     /**
-     * @description <p>Whether to use the amount as the output or the input for the basis of the swap:<ul>
-     *     <li><code>EXACT_INPUT</code> - request output amount for exact input.</li>
-     *     <li><code>EXACT_OUTPUT</code> - request output amount for exact output. The <code>refundTo</code> address will always receive excess tokens back even after the swap is complete.</li>
-     *     </ul></p>
+     * @description Whether to use the amount as the output or the input for the basis of the swap:
+     *     - `EXACT_INPUT` - request output amount for exact input.
+     *     - `EXACT_OUTPUT` - request output amount for exact output. The `refundTo` address will always receive excess tokens back even after the swap is complete.
      * @enum {string}
      */
     'QuoteRequest.swapType': 'EXACT_INPUT' | 'EXACT_OUTPUT';
     /**
-     * @description <p>Type of the deposit address:<ul>
-     *     <li><code>ORIGIN_CHAIN</code> - deposit address on the origin chain</li>
-     *     <li><code>INTENTS</code> - <strong>account ID</strong> inside near intents to which you should transfer assets inside intents.</li>
-     *     </ul></p>
+     * @description Type of the deposit address:
+     *     - `ORIGIN_CHAIN` - deposit address on the origin chain
+     *     - `INTENTS` - **account ID** inside near intents to which you should transfer assets inside intents.
      * @enum {string}
      */
     'QuoteRequest.depositType': 'ORIGIN_CHAIN' | 'INTENTS';
     /**
-     * @description <p>Type of refund address:<ul>
-     *     <li><code>ORIGIN_CHAIN</code> - assets will be refunded to <code>refundTo</code> address on the origin chain</li>
-     *     <li><code>INTENTS</code> - assets will be refunded to <code>refundTo</code> intents account</li>
-     *     </ul></p>
+     * @description Type of refund address:
+     *     - `ORIGIN_CHAIN` - assets will be refunded to `refundTo` address on the origin chain
+     *     - `INTENTS` - assets will be refunded to `refundTo` intents account
      * @enum {string}
      */
     'QuoteRequest.refundType': 'ORIGIN_CHAIN' | 'INTENTS';
     /**
-     * @description <p>Type of recipient address:<ul>
-     *     <li><code>DESTINATION_CHAIN</code> - assets will be transferred to chain of <code>destinationAsset</code></li>
-     *     <li><code>INTENTS</code> - assets will be transferred to account inside intents</li>
-     *     </ul></p>
+     * @description Type of recipient address:
+     *     - `DESTINATION_CHAIN` - assets will be transferred to chain of `destinationAsset`
+     *     - `INTENTS` - assets will be transferred to account inside intents
      * @enum {string}
      */
     'QuoteRequest.recipientType': 'DESTINATION_CHAIN' | 'INTENTS';
+    AppFee: {
+      /**
+       * Format: double
+       * @description Fee for this recipient as part of amountIn in basis points (1/100th of a percent), e.g. 100 for 1% fee
+       */
+      fee: number;
+      /** @description Intents Account ID where this fee will be transferred to */
+      recipient: string;
+    };
     QuoteRequest: {
+      /** @description List of recipients and their fees */
+      appFees?: components['schemas']['AppFee'][];
       /**
        * Format: double
        * @description Time in milliseconds user is willing to wait for quote from relay.
        */
       quoteWaitingTimeMs?: number;
-      /** @description Referral identifier */
+      /** @description Referral identifier(lower case only) */
       referral?: string;
       /** @description Timestamp in ISO format, that identifies when user refund will begin if the swap isn't completed by then. */
       deadline: string;
-      /** @description <p>Type of recipient address:<ul>
-       *     <li><code>DESTINATION_CHAIN</code> - assets will be transferred to chain of <code>destinationAsset</code></li>
-       *     <li><code>INTENTS</code> - assets will be transferred to account inside intents</li>
-       *     </ul></p> */
+      /** @description Type of recipient address:
+       *     - `DESTINATION_CHAIN` - assets will be transferred to chain of `destinationAsset`
+       *     - `INTENTS` - assets will be transferred to account inside intents */
       recipientType: components['schemas']['QuoteRequest.recipientType'];
-      /** @description Recipient address. The format should match <code>recipientType</code>. */
+      /** @description Recipient address. The format should match `recipientType`. */
       recipient: string;
-      /** @description <p>Type of refund address:<ul>
-       *     <li><code>ORIGIN_CHAIN</code> - assets will be refunded to <code>refundTo</code> address on the origin chain</li>
-       *     <li><code>INTENTS</code> - assets will be refunded to <code>refundTo</code> intents account</li>
-       *     </ul></p> */
+      /** @description Type of refund address:
+       *     - `ORIGIN_CHAIN` - assets will be refunded to `refundTo` address on the origin chain
+       *     - `INTENTS` - assets will be refunded to `refundTo` intents account */
       refundType: components['schemas']['QuoteRequest.refundType'];
       /** @description Address for user refund. */
       refundTo: string;
@@ -155,10 +225,9 @@ export interface components {
       amount: string;
       /** @description ID of the destination asset. */
       destinationAsset: string;
-      /** @description <p>Type of the deposit address:<ul>
-       *     <li><code>ORIGIN_CHAIN</code> - deposit address on the origin chain</li>
-       *     <li><code>INTENTS</code> - <strong>account ID</strong> inside near intents to which you should transfer assets inside intents.</li>
-       *     </ul></p> */
+      /** @description Type of the deposit address:
+       *     - `ORIGIN_CHAIN` - deposit address on the origin chain
+       *     - `INTENTS` - **account ID** inside near intents to which you should transfer assets inside intents. */
       depositType: components['schemas']['QuoteRequest.depositType'];
       /** @description ID of the origin asset. */
       originAsset: string;
@@ -167,18 +236,15 @@ export interface components {
        * @description Slippage tolerance for the swap. This value is in basis points (1/100th of a percent), e.g. 100 for 1% slippage.
        */
       slippageTolerance: number;
-      /** @description <p>Whether to use the amount as the output or the input for the basis of the swap:<ul>
-       *     <li><code>EXACT_INPUT</code> - request output amount for exact input.</li>
-       *     <li><code>EXACT_OUTPUT</code> - request output amount for exact output. The <code>refundTo</code> address will always receive excess tokens back even after the swap is complete.</li>
-       *     </ul></p> */
+      /** @description Whether to use the amount as the output or the input for the basis of the swap:
+       *     - `EXACT_INPUT` - request output amount for exact input.
+       *     - `EXACT_OUTPUT` - request output amount for exact output. The `refundTo` address will always receive excess tokens back even after the swap is complete. */
       swapType: components['schemas']['QuoteRequest.swapType'];
-      /** @description <p>Flag indicating whether this is a dry run request.</p>
-       *     <p>If <code>true</code>, the response will <strong>NOT</strong> contain the following fields:<ul>
-       *     <li><code>depositAddress</code></li>
-       *     <li><code>timeWhenInactive</code></li>
-       *     <li><code>timeEstimate</code></li>
-       *     <li><code>deadline</code></li>
-       *     </ul></p> */
+      /** @description Flag indicating whether this is a dry run request.
+       *     If `true`, the response will **NOT** contain the following fields:
+       *     - `depositAddress`
+       *     - `timeWhenInactive`
+       *     - `deadline` */
       dry: boolean;
     };
     Quote: {
@@ -186,7 +252,7 @@ export interface components {
        * Format: double
        * @description Estimated time in seconds for swap to be executed after the deposit transaction is confirmed
        */
-      timeEstimate?: number;
+      timeEstimate: number;
       /** @description Time when the deposit address will become cold and swap processing will take more time */
       timeWhenInactive?: string;
       /** @description Time when the deposit address will become inactive and funds might be lost */
@@ -207,12 +273,13 @@ export interface components {
       amountInFormatted: string;
       /** @description Amount of the origin asset */
       amountIn: string;
-      /** @description <p>The deposit address on the chain of <code>originAsset</code> in case if <code>depositType</code> is <code>ORIGIN_CHAIN</code>.</p>
-       *     <p>The deposit address inside of near intents (the verifier smart contract) in case if <code>depositType</code> is <code>INTENTS</code>.</p> */
+      /** @description The deposit address on the chain of `originAsset` in case if `depositType` is `ORIGIN_CHAIN`.
+       *
+       *     The deposit address inside of near intents (the verifier smart contract) in case if `depositType` is `INTENTS`. */
       depositAddress?: string;
     };
     NearIntentsQuote: {
-      /** @description Response that contains the deposit address to send "amount" of <code>originAsset</code> and possible output amount. */
+      /** @description Response that contains the deposit address to send "amount" of `originAsset` and possible output amount. */
       quote: components['schemas']['Quote'];
       /** @description User request */
       quoteRequest: components['schemas']['QuoteRequest'];
@@ -246,9 +313,10 @@ export interface components {
       kind: components['schemas']['QuoteKind'];
       /** Format: double */
       ttl: number;
-      appData: string;
+      appData?: string;
       isSmartContractWallet?: boolean;
       isNative?: boolean;
+      requestId?: string;
     };
   };
   responses: never;
@@ -259,6 +327,55 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+  GetTokens: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Ok */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['TokenModel'][];
+        };
+      };
+    };
+  };
+  GetSwapStatus: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Ok */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SwapStatusModel'];
+        };
+      };
+      /** @description No swap found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
   GetQuote: {
     parameters: {
       query?: never;
@@ -293,6 +410,28 @@ export interface operations {
         content: {
           'application/json': {
             error: string;
+          };
+        };
+      };
+    };
+  };
+  CheckHealth: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Ok */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            status: string;
           };
         };
       };

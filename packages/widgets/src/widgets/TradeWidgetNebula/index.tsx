@@ -26,6 +26,7 @@ import {
   useOnChainCancelOrder
 } from '@jetstreamgg/hooks';
 import { useQuoteTradeNebula } from '../../../../hooks/src/trade/useQuoteTradeNebula';
+import { useSwapStatusNebula } from '../../../../hooks/src/trade/useOrderStatusNebula';
 import { useTransferToken } from '../../../../hooks/src/tokens/useTransferToken';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import {
@@ -136,6 +137,7 @@ function TradeWidgetWrapped({
     undefined
   );
   const [formattedExecutedBuyAmount, setFormattedExecutedBuyAmount] = useState<string | undefined>(undefined);
+  const [transferHash, setTransferHash] = useState<string | undefined>(undefined);
 
   const chainId = useChainId();
   const { address, isConnecting, isConnected } = useAccount();
@@ -296,6 +298,15 @@ function TradeWidgetWrapped({
         : debouncedTargetAmount === targetAmount) && widgetState.screen === TradeScreen.ACTION
   });
 
+  // Check swap status for Nebula transfers
+  const { data: swapStatus } = useSwapStatusNebula({
+    id: quoteData?.quote.depositAddress,
+    enabled:
+      !!quoteData?.quote.depositAddress &&
+      quoteData?.quoteSource === QuoteSource.NEARINTENTS &&
+      !!transferHash
+  });
+
   useEffect(() => {
     if (quoteError) {
       const errorMessage = getQuoteErrorForType(quoteError.message);
@@ -307,6 +318,27 @@ function TradeWidgetWrapped({
       });
     }
   }, [quoteError]);
+
+  // Update status when NEAR Intents API confirms success
+  useEffect(() => {
+    console.log('NEAR Intents swap status:', swapStatus);
+    if (swapStatus === 'SUCCESS' && quoteData?.quoteSource === QuoteSource.NEARINTENTS) {
+      console.log('NEAR Intents trade confirmed successful by API');
+
+      // Update to success status when API confirms success
+      setTxStatus(TxStatus.SUCCESS);
+      onNotification?.({
+        title: t`Trade successful`,
+        description: t`Your NEAR Intents trade has been completed`,
+        status: TxStatus.SUCCESS
+      });
+      onWidgetStateChange?.({
+        hash: transferHash || '',
+        widgetState,
+        txStatus: TxStatus.SUCCESS
+      });
+    }
+  }, [swapStatus, quoteData?.quoteSource, transferHash, onNotification, onWidgetStateChange, widgetState]);
 
   useEffect(() => {
     // If any of these deps change we set the tradeAnyway to false
@@ -391,7 +423,7 @@ function TradeWidgetWrapped({
   } = useTransferToken({
     amount: quoteData?.quote.sellAmountToSign,
     contractAddress: originToken?.isNative ? undefined : originTokenAddress,
-    to: quoteData?.quote.depositAddress ?? '0x',
+    to: quoteData?.quote?.depositAddress ?? '0x',
     onStart: (hash: string) => {
       addRecentTransaction?.({
         hash,
@@ -400,19 +432,24 @@ function TradeWidgetWrapped({
           unit: originToken ? getTokenDecimals(originToken, chainId) : 18
         })} ${originToken?.symbol ?? ''}`
       });
-      setExternalLink(getTransactionLink(chainId, address, hash, isSafeWallet));
+
+      setExternalLink(`https://explorer.near-intents.org/transactions/${quoteData?.quote?.depositAddress}`);
       setTxStatus(TxStatus.LOADING);
       onWidgetStateChange?.({ hash, widgetState, txStatus: TxStatus.LOADING });
     },
     onSuccess: (hash: string) => {
+      // Store the transfer hash for status checking
+      setTransferHash(hash);
+
+      // Keep in loading state until NEAR Intents API confirms success
       onNotification?.({
-        title: t`Transfer successful`,
-        description: t`You transferred ${originToken?.symbol ?? ''}`,
-        status: TxStatus.SUCCESS
+        title: t`Transfer complete`,
+        description: t`Waiting for NEAR Intents processing...`,
+        status: TxStatus.LOADING
       });
-      setTxStatus(TxStatus.SUCCESS);
+      // Don't set success yet - wait for API confirmation
       // mutateAllowance();
-      onWidgetStateChange?.({ hash, widgetState, txStatus: TxStatus.SUCCESS });
+      onWidgetStateChange?.({ hash, widgetState, txStatus: TxStatus.LOADING });
     },
     onError: (error: Error, hash: string) => {
       onNotification?.({
@@ -760,8 +797,6 @@ function TradeWidgetWrapped({
     allowanceLoading ||
     isAmountWaitingForDebounce;
 
-  console.log(transferDisabled);
-
   useEffect(() => {
     if (!originToken?.isNative && isSmartContractWallet) {
       setCancelLoading(!onChainCancelPrepared);
@@ -930,6 +965,7 @@ function TradeWidgetWrapped({
     setExternalLink(undefined);
     setFormattedExecutedSellAmount(undefined);
     setFormattedExecutedBuyAmount(undefined);
+    setTransferHash(undefined);
   }, [chainId]);
 
   useEffect(() => {
@@ -1237,6 +1273,7 @@ function TradeWidgetWrapped({
         ) : txStatus !== TxStatus.IDLE ? (
           <CardAnimationWrapper key="widget-transaction-status">
             <TradeTransactionStatus
+              quoteData={quoteData}
               originToken={originToken as any} // TODO fix this type
               originAmount={originAmount}
               targetToken={targetToken as any} // TODO fix this type

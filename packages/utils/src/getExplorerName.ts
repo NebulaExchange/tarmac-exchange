@@ -5,7 +5,8 @@ export enum ExplorerName {
   COW_EXPLORER = 'CoW Explorer',
   BASESCAN = 'Basescan',
   ARBITRUM_EXPLORER = 'Arbiscan',
-  SAFE = 'Safe Wallet'
+  SAFE = 'Safe Wallet',
+  NEAR_INTENTS_EXPLORER = 'NEAR Intents Explorer'
 }
 
 export const getExplorerName = (chainId: number, isSafeWallet: boolean) => {

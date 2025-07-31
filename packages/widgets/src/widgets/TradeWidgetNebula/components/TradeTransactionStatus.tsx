@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useLingui } from '@lingui/react';
 import { t } from '@lingui/core/macro';
 import { getTokenDecimals, OrderQuoteResponse, Token } from '@jetstreamgg/hooks';
+import { QuoteSource } from '../../../../../hooks/src/trade/constants';
 import {
   WAD_PRECISION,
   formatBigInt,
@@ -114,6 +115,32 @@ export const TradeTransactionStatus = ({
 
   // Sets the title and subtitle of the card
   useEffect(() => {
+    // Handle NEAR Intents trades specifically
+    if (
+      quoteData?.quoteSource === QuoteSource.NEARINTENTS &&
+      flow === TradeFlow.TRADE &&
+      action === TradeAction.TRANSFER &&
+      screen === TradeScreen.TRANSACTION
+    ) {
+      if (txStatus === TxStatus.LOADING) {
+        setTxTitle(t`Processing NEAR Intents trade`);
+        setTxSubtitle(t`Your transfer is being processed by NEAR Intents`);
+        setTxDescription(t`Waiting for the NEAR Intents network to process your trade`);
+        setLoadingText(t`Processing...`);
+      } else if (txStatus === TxStatus.SUCCESS) {
+        setTxTitle(t`Trade successful`);
+        setTxSubtitle(t`Your NEAR Intents trade has been completed`);
+        setTxDescription(t`Your tokens have been successfully traded via NEAR Intents`);
+        setLoadingText(t`Trade completed`);
+      } else if (txStatus === TxStatus.ERROR) {
+        setTxTitle(t`Trade failed`);
+        setTxSubtitle(t`Your NEAR Intents trade could not be completed`);
+        setTxDescription(t`There was an issue processing your trade via NEAR Intents`);
+        setLoadingText(t`Try again`);
+      }
+      return;
+    }
+
     if (isEthFlow) {
       setTxTitle(i18n._(ethFlowTradeTitle[ethFlowTxStatus as keyof EthTxCardCopyText]));
       setTxSubtitle(
@@ -176,18 +203,32 @@ export const TradeTransactionStatus = ({
         setLoadingText(i18n._(tradeLoadingButtonText({ txStatus })));
       }
     }
-  }, [txStatus, flow, action, screen, i18n.locale, isEthFlow, ethFlowTxStatus]);
+  }, [txStatus, flow, action, screen, i18n.locale, isEthFlow, ethFlowTxStatus, quoteData?.quoteSource]);
+  // Determine the explorer name based on quote source
+  const getExplorerDisplayName = () => {
+    // If it's a NEAR Intents quote, show NEAR Intents Explorer
+    if (quoteData?.quoteSource === QuoteSource.NEARINTENTS) {
+      return ExplorerName.NEAR_INTENTS_EXPLORER;
+    }
+
+    // For CoW Protocol quotes, use the existing logic
+    if (action === TradeAction.APPROVE || isL2) {
+      return chainExplorerName;
+    }
+
+    if (
+      isEthFlow &&
+      (ethFlowTxStatus === EthFlowTxStatus.SENDING_ETH || ethFlowTxStatus === EthFlowTxStatus.CREATING_ORDER)
+    ) {
+      return chainExplorerName;
+    }
+
+    return ExplorerName.COW_EXPLORER;
+  };
+
   return (
     <TransactionStatus
-      explorerName={
-        action === TradeAction.APPROVE || isL2
-          ? chainExplorerName
-          : isEthFlow &&
-              (ethFlowTxStatus === EthFlowTxStatus.SENDING_ETH ||
-                ethFlowTxStatus === EthFlowTxStatus.CREATING_ORDER)
-            ? chainExplorerName
-            : ExplorerName.COW_EXPLORER
-      }
+      explorerName={getExplorerDisplayName()}
       onExternalLinkClicked={onExternalLinkClicked}
     />
   );
