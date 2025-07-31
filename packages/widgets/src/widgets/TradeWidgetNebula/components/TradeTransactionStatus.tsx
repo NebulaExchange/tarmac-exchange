@@ -163,6 +163,16 @@ export const TradeTransactionStatus = ({
       );
       setLoadingText(i18n._(ethFlowTradeLoadingButtonText({ ethFlowTxStatus })));
     } else {
+      // Handle NEAR Intents trades - no step indicator needed
+      if (
+        quoteData?.quoteSource === QuoteSource.NEARINTENTS &&
+        flow === TradeFlow.TRADE &&
+        action === TradeAction.TRANSFER
+      ) {
+        // Don't set step titles for NEAR Intents - single step UX
+        return;
+      }
+
       if (flow === TradeFlow.TRADE) setStepTwoTitle(t`Trade`);
       if (flow === TradeFlow.TRADE && action === TradeAction.APPROVE && screen === TradeScreen.TRANSACTION) {
         setStep(1);
@@ -230,6 +240,8 @@ export const TradeTransactionStatus = ({
     <TransactionStatus
       explorerName={getExplorerDisplayName()}
       onExternalLinkClicked={onExternalLinkClicked}
+      // Hide step indicator for NEAR Intents trades
+      showStepIndicator={quoteData?.quoteSource !== QuoteSource.NEARINTENTS}
     />
   );
 };

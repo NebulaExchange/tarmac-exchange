@@ -1016,7 +1016,7 @@ function TradeWidgetWrapped({
       setTargetToken(newTargetToken);
       setWidgetState((prev: WidgetState) => ({
         ...prev,
-        action: needsAllowance ? TradeAction.APPROVE : TradeAction.TRADE,
+        action: isTransfer ? TradeAction.TRANSFER : needsAllowance ? TradeAction.APPROVE : TradeAction.TRADE,
         screen: TradeScreen.ACTION
       }));
 
@@ -1046,8 +1046,9 @@ function TradeWidgetWrapped({
   }, [externalWidgetState]); // by setting the object as dep we detect changes in the object reference
 
   useEffect(() => {
-    setShowStepIndicator(!originToken?.isNative);
-  }, [originToken?.isNative]);
+    // Hide step indicator for NEAR Intents trades (single step UX)
+    setShowStepIndicator(!originToken?.isNative && !isTransfer);
+  }, [originToken?.isNative, isTransfer]);
 
   const approveOnClick = () => {
     setWidgetState((prev: WidgetState) => ({
@@ -1108,7 +1109,7 @@ function TradeWidgetWrapped({
 
     setWidgetState((prev: WidgetState) => ({
       ...prev,
-      action: needsAllowance ? TradeAction.APPROVE : TradeAction.TRADE,
+      action: isTransfer ? TradeAction.TRANSFER : needsAllowance ? TradeAction.APPROVE : TradeAction.TRADE,
       screen: TradeScreen.ACTION
     }));
   };

@@ -62,14 +62,25 @@ function TransactionDetail() {
 export function TransactionStatus({
   explorerName: paramExplorerName,
   onExternalLinkClicked,
-  transactionDetail
+  transactionDetail,
+  showStepIndicator: propShowStepIndicator
 }: {
   explorerName?: ExplorerName;
   onExternalLinkClicked?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   transactionDetail?: React.ReactElement;
+  showStepIndicator?: boolean;
 }): React.ReactElement {
-  const { txStatus, txTitle, txSubtitle, externalLink, step, stepTwoTitle, showStepIndicator } =
-    useContext(WidgetContext);
+  const {
+    txStatus,
+    txTitle,
+    txSubtitle,
+    externalLink,
+    step,
+    stepTwoTitle,
+    showStepIndicator: contextShowStepIndicator
+  } = useContext(WidgetContext);
+  const showStepIndicator =
+    propShowStepIndicator !== undefined ? propShowStepIndicator : contextShowStepIndicator;
   const chainId = useChainId();
   const isSafeWallet = useIsSafeWallet();
   const explorerName = paramExplorerName ?? getExplorerName(chainId, isSafeWallet);
