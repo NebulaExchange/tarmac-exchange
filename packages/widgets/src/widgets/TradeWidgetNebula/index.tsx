@@ -329,7 +329,7 @@ function TradeWidgetWrapped({
       setTxStatus(TxStatus.SUCCESS);
       onNotification?.({
         title: t`Trade successful`,
-        description: t`Your NEAR Intents trade has been completed`,
+        description: t`Trade successful`,
         status: TxStatus.SUCCESS
       });
       onWidgetStateChange?.({
@@ -443,8 +443,8 @@ function TradeWidgetWrapped({
 
       // Keep in loading state until NEAR Intents API confirms success
       onNotification?.({
-        title: t`Transfer complete`,
-        description: t`Waiting for NEAR Intents processing...`,
+        title: t`Transferring`,
+        description: t`Processing transaction`,
         status: TxStatus.LOADING
       });
       // Don't set success yet - wait for API confirmation

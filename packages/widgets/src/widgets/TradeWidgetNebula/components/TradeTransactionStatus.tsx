@@ -123,19 +123,19 @@ export const TradeTransactionStatus = ({
       screen === TradeScreen.TRANSACTION
     ) {
       if (txStatus === TxStatus.LOADING) {
-        setTxTitle(t`Processing NEAR Intents trade`);
-        setTxSubtitle(t`Your transfer is being processed by NEAR Intents`);
-        setTxDescription(t`Waiting for the NEAR Intents network to process your trade`);
+        setTxTitle(t`Processing transaction`);
+        setTxSubtitle(t`Processing transaction`);
+        setTxDescription(t`Processing transaction`);
         setLoadingText(t`Processing...`);
       } else if (txStatus === TxStatus.SUCCESS) {
         setTxTitle(t`Trade successful`);
-        setTxSubtitle(t`Your NEAR Intents trade has been completed`);
-        setTxDescription(t`Your tokens have been successfully traded via NEAR Intents`);
+        setTxSubtitle(t`Trade successful`);
+        setTxDescription(t`Trade successful`);
         setLoadingText(t`Trade completed`);
       } else if (txStatus === TxStatus.ERROR) {
         setTxTitle(t`Trade failed`);
-        setTxSubtitle(t`Your NEAR Intents trade could not be completed`);
-        setTxDescription(t`There was an issue processing your trade via NEAR Intents`);
+        setTxSubtitle(t`Trade failed`);
+        setTxDescription(t`Trade failed`);
         setLoadingText(t`Try again`);
       }
       return;
