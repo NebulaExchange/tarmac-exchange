@@ -36,6 +36,28 @@ import { TxStatus, approveLoadingButtonText } from '@widgets/shared/constants';
 import { formatUnits } from 'viem';
 import { EthTxCardCopyText } from '../lib/types';
 import { useChainId } from 'wagmi';
+import { ExternalLink } from '@widgets/shared/components/ExternalLink';
+import { Text } from '@widgets/shared/components/ui/Typography';
+
+// Custom transaction detail component for NEAR Intents
+const NearIntentsTransactionDetail = () => {
+  return (
+    <>
+      <Text variant="medium" className="text-textSecondary mt-3 leading-4">
+        You are signing a transfer function, which will deposit your token into NEAR intents and place a
+        trade. Your trade will revert in case your tokens are not delivered to your wallet within 30 minutes.
+        Read about NEAR intents{' '}
+        <ExternalLink
+          href="https://docs.near-intents.org/near-intents"
+          className="text-textEmphasis underline"
+          showIcon={false}
+        >
+          here
+        </ExternalLink>
+      </Text>
+    </>
+  );
+};
 
 // TX Status wrapper to update copy
 export const TradeTransactionStatus = ({
@@ -242,6 +264,11 @@ export const TradeTransactionStatus = ({
       onExternalLinkClicked={onExternalLinkClicked}
       // Hide step indicator for NEAR Intents trades
       showStepIndicator={quoteData?.quoteSource !== QuoteSource.NEARINTENTS}
+      transactionDetail={
+        quoteData?.quoteSource === QuoteSource.NEARINTENTS && txStatus === TxStatus.INITIALIZED ? (
+          <NearIntentsTransactionDetail />
+        ) : null
+      }
     />
   );
 };
